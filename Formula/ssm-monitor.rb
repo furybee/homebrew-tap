@@ -1,18 +1,65 @@
 class SsmMonitor < Formula
-  desc "TUI monitor for AWS SSM-managed instances"
+  desc "TUI monitor for AWS SSM-managed instances with bookmarks, alarms, and SSM session launcher"
   homepage "https://github.com/furybee/ssm-monitor"
-  url "https://github.com/furybee/ssm-monitor/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "6142cc38b98ed93bef6807a5be794c18e8db981d19bb163b905d5b4ff6e5c7c7"
+  version "0.1.1"
+  if OS.mac?
+    if Hardware::CPU.arm?
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.1/ssm-monitor-aarch64-apple-darwin.tar.xz"
+      sha256 "f091fb3636a096edf7cf32608dead2257b45b55881cc1941c24431f198e852d3"
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.1/ssm-monitor-x86_64-apple-darwin.tar.xz"
+      sha256 "2408477a8f6238f83df03e3dd694f635b26c078cd24062716083edfc9ee1bbe3"
+    end
+  end
+  if OS.linux?
+    if Hardware::CPU.arm?
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.1/ssm-monitor-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "83a7258d0a476271de57735d56db1ca54bbc35deea3fd9ad0bbd9b95427cf69c"
+    end
+    if Hardware::CPU.intel?
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.1/ssm-monitor-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "eec91fb0a16ae3acbed04f3a2eb5174b8edcadb7f136e212417b99067c2735da"
+    end
+  end
   license "MIT"
-  head "https://github.com/furybee/ssm-monitor.git", branch: "main"
 
-  depends_on "rust" => :build
+  BINARY_ALIASES = {
+    "aarch64-apple-darwin":      {},
+    "aarch64-unknown-linux-gnu": {},
+    "x86_64-apple-darwin":       {},
+    "x86_64-unknown-linux-gnu":  {},
+  }.freeze
 
-  def install
-    system "cargo", "install", *std_cargo_args
+  def target_triple
+    cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
+    os = OS.mac? ? "apple-darwin" : "unknown-linux-gnu"
+
+    "#{cpu}-#{os}"
   end
 
-  test do
-    assert_match version.to_s, shell_output("#{bin}/ssm-monitor --version")
+  def install_binary_aliases!
+    BINARY_ALIASES[target_triple.to_sym].each do |source, dests|
+      dests.each do |dest|
+        bin.install_symlink bin/source.to_s => dest
+      end
+    end
+  end
+
+  def install
+    bin.install "ssm-monitor" if OS.mac? && Hardware::CPU.arm?
+    bin.install "ssm-monitor" if OS.mac? && Hardware::CPU.intel?
+    bin.install "ssm-monitor" if OS.linux? && Hardware::CPU.arm?
+    bin.install "ssm-monitor" if OS.linux? && Hardware::CPU.intel?
+
+    install_binary_aliases!
+
+    # Homebrew will automatically install these, so we don't need to do that
+    doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
+    leftover_contents = Dir["*"] - doc_files
+
+    # Install any leftover files in pkgshare; these are probably config or
+    # sample files.
+    pkgshare.install(*leftover_contents) unless leftover_contents.empty?
   end
 end
