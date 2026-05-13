@@ -1,25 +1,25 @@
 class SsmMonitor < Formula
   desc "TUI monitor for AWS SSM-managed instances with bookmarks, alarms, and SSM session launcher"
   homepage "https://github.com/furybee/ssm-monitor"
-  version "0.1.2"
+  version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.2/ssm-monitor-aarch64-apple-darwin.tar.xz"
-      sha256 "d40ca49297fa2434ba6f6cb079a1f5743e485291db24b373e4b5376b02b375a7"
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.2.0/ssm-monitor-aarch64-apple-darwin.tar.xz"
+      sha256 "84b0fa2d37b94b8032c45b5a4a859e6cfbb1b47e493ba23d800f1d8efdeb7c5e"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.2/ssm-monitor-x86_64-apple-darwin.tar.xz"
-      sha256 "cf53502f7cd138243695ba2c7a70215a0ae62a3026cb91313b3ab584309ae0ed"
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.2.0/ssm-monitor-x86_64-apple-darwin.tar.xz"
+      sha256 "2641492fd174d6028f24ca1b6c9aa44f1103c3477d5b930a77ac1260218e0e09"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.2/ssm-monitor-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "37758f153d1ae503f4f256d2d57add57967cbd8a613e1af53323e8964584568a"
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.2.0/ssm-monitor-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "62f6e0474efc3da58f08c65d81310b20b6c1675857df82a0167e711a5c7cdce8"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/furybee/ssm-monitor/releases/download/v0.1.2/ssm-monitor-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "cb5e9ece85621e7b273d652cb1feb8b970a2f3fb839dc0db5e171f935acca2c5"
+      url "https://github.com/furybee/ssm-monitor/releases/download/v0.2.0/ssm-monitor-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "705eca601a09dc95607a769bf64799875c6cd5cae9c1835d6a49cbadb3d1f893"
     end
   end
   license "MIT"
