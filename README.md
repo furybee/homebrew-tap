@@ -4,14 +4,18 @@ Homebrew tap for [FuryBee](https://github.com/furybee) tools.
 
 ## Usage
 
+Homebrew requires you to trust a third-party tap once before installing from it:
+
 ```bash
-brew install furybee/homebrew-tap/<formula>
+brew trust furybee/tap
+brew install furybee/tap/<formula>
 ```
 
 For example:
 
 ```bash
-brew install furybee/homebrew-tap/cli-games
+brew trust furybee/tap
+brew install furybee/tap/cli-games
 ```
 
 ## Available formulae
