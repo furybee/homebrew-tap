@@ -1,25 +1,25 @@
 class CliGames < Formula
   desc "A collection of terminal mini-games"
   homepage "https://github.com/furybee/cli-games"
-  version "0.2.1"
+  version "0.2.2"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/furybee/cli-games/releases/download/v0.2.1/cli-games-aarch64-apple-darwin.tar.xz"
-      sha256 "db41587f4ac546df54d29b99590d86beee86678c75b909f08000ee396fa0970b"
+      url "https://github.com/furybee/cli-games/releases/download/v0.2.2/cli-games-aarch64-apple-darwin.tar.xz"
+      sha256 "de960aa3e57651f7eab49425032f887d4790fd0c3a7dfc2d46b33167c78494c2"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/furybee/cli-games/releases/download/v0.2.1/cli-games-x86_64-apple-darwin.tar.xz"
-      sha256 "1101e73b029574d57907084f6f1cc7c49b757cf5873f8b4bb1f283726972f33e"
+      url "https://github.com/furybee/cli-games/releases/download/v0.2.2/cli-games-x86_64-apple-darwin.tar.xz"
+      sha256 "81e1b01561753e8343030cfea582356e41e4e6828777d7de19bc54f87386e37d"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/furybee/cli-games/releases/download/v0.2.1/cli-games-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "f48a2ebe9927f4a3d505fde3a453254c6a4ade9b37a024107f84ec49461fef1d"
+      url "https://github.com/furybee/cli-games/releases/download/v0.2.2/cli-games-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "37272f7df940faa5edd838a69eea1934e2f8a04e2d64cf9ce51d87a483818db4"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/furybee/cli-games/releases/download/v0.2.1/cli-games-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "e060a4d5f320192f306954f0c7524b44065619913210096745b812aeffb284b7"
+      url "https://github.com/furybee/cli-games/releases/download/v0.2.2/cli-games-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "c6ceb2d1b24fb2d37074ddf89bc220fd36de9c1a96cc3873be17e64e4d330cdc"
     end
   end
   license "MIT"
